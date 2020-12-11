@@ -25,11 +25,36 @@
                                     <td>{{$category->name}}</td>
                                     <td>
                                         <a href="{{route('category.edit',[$category->id])}}" class="btn btn-outline-success">Edit</a>
-                                        <form action="{{route('category.destroy',[$category->id])}}" method="post" style="display:inline">
-                                            @method('DELETE')
-                                            @csrf
-                                            <button type="submit" class="btn btn-outline-danger">Delete</button>
-                                        </form>
+                                        {{-- <button type="submit" class="btn btn-outline-danger">Delete</button> --}}
+                                        <!-- Button trigger modal -->
+                                        <button type="button" class="btn btn-outline-danger" data-toggle="modal" data-target="#DeleteModal{{$category->id}}">
+                                            Delete
+                                        </button>
+                                        
+                                        <!-- Modal -->
+                                        <div class="modal fade" id="DeleteModal{{$category->id}}" tabindex="-1" role="dialog" aria-labelledby="DeleteModalLabel" aria-hidden="true">
+                                            <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                <h5 class="modal-title" id="DeleteModalLabel">Delete Category</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Are you sure to delete this item?
+                                                    <form action="{{route('category.destroy',[$category->id])}}" method="post" style="display:inline">
+                                                        @method('DELETE')
+                                                        @csrf
+                                                </div>
+                                                <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-outline-danger">Delete</button>
+                                            </form>
+                                                </div>
+                                            </div>
+                                            </div>
+                                        </div>
                                         
                                     </td>
                                 </tr>
