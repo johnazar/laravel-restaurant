@@ -41,7 +41,7 @@ class CategoryController extends Controller
         Category::create([
             'name'=>$request->get('name')
         ]);
-        return redirect()->back()->with('message','Category created');
+        return redirect()->route('category.index')->with('message','Category created');
     }
 
     /**
@@ -94,5 +94,8 @@ class CategoryController extends Controller
     public function destroy($id)
     {
         //
+        $category =Category::find($id);
+        $category->delete();
+        return redirect()->route('category.index')->with('message','Category deleted');
     }
 }

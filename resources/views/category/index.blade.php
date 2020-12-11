@@ -25,7 +25,12 @@
                                     <td>{{$category->name}}</td>
                                     <td>
                                         <a href="{{route('category.edit',[$category->id])}}" class="btn btn-outline-success">Edit</a>
-                                        <a href="" class="btn btn-outline-danger">Delete</a>
+                                        <form action="{{route('category.destroy',[$category->id])}}" method="post" style="display:inline">
+                                            @method('DELETE')
+                                            @csrf
+                                            <button type="submit" class="btn btn-outline-danger">Delete</button>
+                                        </form>
+                                        
                                     </td>
                                 </tr>
                             @empty
