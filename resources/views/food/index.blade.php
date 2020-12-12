@@ -5,7 +5,8 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">All Food</div>
+                <div class="card-header">All Food<a href="{{route('food.create')}}"class="float-right btn btn-secondary">Add food</a></div>
+                
                 @if (Session::has('message'))
                     <div class="alert alert-secondary">{{Session::get('message')}}</div>
                 @endif
