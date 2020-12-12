@@ -36,6 +36,26 @@ class FoodController extends Controller
     public function store(Request $request)
     {
         //
+        $this->validate($request,[
+            'name'=>'required',
+            'description'=>'required',
+            'price'=>'required|integer',
+            'category_id'=>'required',
+            'image'=>'required',
+            'image.*'=>'image|mimes:jpg,jpeg,png'
+        ]);
+        $image = $request->file('image');
+        $name = uniqid().'.'.$image->getClientOriginalExtension();
+        $destnationPath = public_path('/images');
+        $image->move($destnationPath,$name);
+        Food::create([
+            'name'=>$request->get('name'),
+            'description'=>$request->get('description'),
+            'price'=>$request->get('price'),
+            'category_id'=>$request->get('category_id'),
+            'image'=> $name
+        ]);
+        return redirect()->back()->with('message','Food created');
     }
 
     /**
