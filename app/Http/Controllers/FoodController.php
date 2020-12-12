@@ -14,6 +14,8 @@ class FoodController extends Controller
     public function index()
     {
         //
+        $foods = Food::latest()->get();
+        return view('food.index',compact('foods'));
     }
 
     /**
@@ -53,7 +55,7 @@ class FoodController extends Controller
             'description'=>$request->get('description'),
             'price'=>$request->get('price'),
             'category_id'=>$request->get('category_id'),
-            'image'=> $name
+            'image'=> $name // I think it'better to store full pth to file
         ]);
         return redirect()->back()->with('message','Food created');
     }
