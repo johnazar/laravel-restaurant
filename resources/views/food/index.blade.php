@@ -29,7 +29,7 @@
                                     <td><img src="{{asset('images')}}/{{$food->image}}" width="100px"></td>
                                     <td>{{$food->name}}</td>
                                     <td>{{$food->description}}</td>
-                                    <td>{{$food->category_id}}</td>
+                                    <td>{{$food->category->name}}</td>
                                     <td>$ {{$food->price}}</td>
                                     <td>
                                         <a href="{{route('food.edit',[$food->id])}}" class="btn btn-outline-success">Edit</a>
